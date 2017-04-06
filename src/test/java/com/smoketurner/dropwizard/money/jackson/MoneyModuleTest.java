@@ -17,8 +17,8 @@ package com.smoketurner.dropwizard.money.jackson;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import java.math.BigDecimal;
+import java.util.Locale;
 import org.javamoney.moneta.Money;
-import org.junit.Before;
 import org.junit.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -26,21 +26,33 @@ public class MoneyModuleTest {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    @Before
-    public void setUp() throws Exception {
-        mapper.registerModule(new MoneyModule());
-    }
-
     @Test
     public void canDeserializeAMoney() throws Exception {
-        assertThat(mapper.readValue("\"USD 1234.53\"", Money.class))
+        mapper.registerModule(new MoneyModule());
+        assertThat(mapper.readValue("\"$1,234.53\"", Money.class))
                 .isEqualTo(Money.of(new BigDecimal("1234.53"), "USD"));
     }
 
     @Test
+    public void canDeserializeAMoneyEUR() throws Exception {
+        mapper.registerModule(new MoneyModule(Locale.GERMAN));
+        assertThat(mapper.readValue("\"€1.234,53\"", Money.class))
+                .isEqualTo(Money.of(new BigDecimal("1234.53"), "EUR"));
+    }
+
+    @Test
     public void canSerializeMoney() throws Exception {
+        mapper.registerModule(new MoneyModule());
         assertThat(mapper
                 .writeValueAsString(Money.of(new BigDecimal("1234.53"), "USD")))
-                        .isEqualTo("\"USD 1234.53\"");
+                        .isEqualTo("\"$1,234.53\"");
+    }
+
+    @Test
+    public void canSerializeMoneyEUR() throws Exception {
+        mapper.registerModule(new MoneyModule(Locale.GERMAN));
+        assertThat(mapper
+                .writeValueAsString(Money.of(new BigDecimal("9375.59"), "EUR")))
+                        .isEqualTo("\"EUR 9.375,59\"");
     }
 }

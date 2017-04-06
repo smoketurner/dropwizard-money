@@ -15,6 +15,8 @@
  */
 package com.smoketurner.dropwizard.money;
 
+import java.util.Locale;
+import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,6 +24,9 @@ public class MoneyFactory {
 
     @NotEmpty
     private String defaultCurrencyCode = "USD";
+
+    @NotNull
+    private Locale defaultLocale = Locale.getDefault();
 
     @JsonProperty
     public String getDefaultCurrencyCode() {
@@ -31,5 +36,15 @@ public class MoneyFactory {
     @JsonProperty
     public void setDefaultCurrencyCode(String currencyCode) {
         this.defaultCurrencyCode = currencyCode;
+    }
+
+    @JsonProperty
+    public Locale getDefaultLocale() {
+        return defaultLocale;
+    }
+
+    @JsonProperty
+    public void setDefaultLocale(Locale locale) {
+        this.defaultLocale = locale;
     }
 }

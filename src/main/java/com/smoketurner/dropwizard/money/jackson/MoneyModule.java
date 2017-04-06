@@ -16,7 +16,12 @@
 package com.smoketurner.dropwizard.money.jackson;
 
 import java.io.IOException;
-import org.javamoney.moneta.Money;
+import java.util.Locale;
+import javax.money.MonetaryAmount;
+import javax.money.format.AmountFormatQueryBuilder;
+import javax.money.format.MonetaryAmountFormat;
+import javax.money.format.MonetaryFormats;
+import org.javamoney.moneta.format.CurrencyStyle;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -36,39 +41,54 @@ import com.fasterxml.jackson.databind.ser.Serializers;
 
 public class MoneyModule extends Module {
 
-    private static class MoneyDeserializer extends JsonDeserializer<Money> {
+    private final MonetaryAmountFormat formatter;
+
+    public MoneyModule() {
+        this.formatter = MonetaryFormats.getAmountFormat(
+                AmountFormatQueryBuilder.of(Locale.getDefault())
+                        .set(CurrencyStyle.SYMBOL).build());
+    }
+
+    public MoneyModule(Locale locale) {
+        this.formatter = MonetaryFormats
+                .getAmountFormat(AmountFormatQueryBuilder.of(locale)
+                        .set(CurrencyStyle.SYMBOL).build());
+    }
+
+    private class MoneyDeserializer extends JsonDeserializer<MonetaryAmount> {
         @Override
-        public Money deserialize(JsonParser jp, DeserializationContext ctxt)
+        public MonetaryAmount deserialize(JsonParser jp,
+                DeserializationContext ctxt)
                 throws IOException, JsonProcessingException {
-            return Money.parse(jp.getText());
+            return formatter.parse(jp.getText());
         }
     }
 
-    private static class MoneyDeserializers extends Deserializers.Base {
+    private class MoneyDeserializers extends Deserializers.Base {
         @Override
         public JsonDeserializer<?> findBeanDeserializer(JavaType type,
                 DeserializationConfig config, BeanDescription beanDesc)
                 throws JsonMappingException {
-            if (Money.class.isAssignableFrom(type.getRawClass())) {
+            if (MonetaryAmount.class.isAssignableFrom(type.getRawClass())) {
                 return new MoneyDeserializer();
             }
             return super.findBeanDeserializer(type, config, beanDesc);
         }
     }
 
-    private static class MoneySerializer extends JsonSerializer<Money> {
+    private class MoneySerializer extends JsonSerializer<MonetaryAmount> {
         @Override
-        public void serialize(Money value, JsonGenerator jgen,
+        public void serialize(MonetaryAmount value, JsonGenerator jgen,
                 SerializerProvider provider) throws IOException {
-            jgen.writeString(value.toString());
+            jgen.writeString(formatter.format(value));
         }
     }
 
-    private static class MoneySerializers extends Serializers.Base {
+    private class MoneySerializers extends Serializers.Base {
         @Override
         public JsonSerializer<?> findSerializer(SerializationConfig config,
                 JavaType type, BeanDescription beanDesc) {
-            if (Money.class.isAssignableFrom(type.getRawClass())) {
+            if (MonetaryAmount.class.isAssignableFrom(type.getRawClass())) {
                 return new MoneySerializer();
             }
             return super.findSerializer(config, type, beanDesc);

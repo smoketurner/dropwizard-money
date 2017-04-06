@@ -15,6 +15,7 @@
  */
 package com.smoketurner.dropwizard.money;
 
+import java.util.Locale;
 import com.smoketurner.dropwizard.money.jackson.MoneyModule;
 import com.smoketurner.dropwizard.money.jersey.MonetaryExceptionMapper;
 import io.dropwizard.Configuration;
@@ -33,7 +34,9 @@ public abstract class MoneyBundle<C extends Configuration>
     @Override
     public void run(final C configuration, Environment environment)
             throws Exception {
-        environment.getObjectMapper().registerModule(new MoneyModule());
+
+        final Locale locale = getMoneyFactory(configuration).getDefaultLocale();
+        environment.getObjectMapper().registerModule(new MoneyModule(locale));
         environment.jersey().register(new MonetaryExceptionMapper());
     }
 }
