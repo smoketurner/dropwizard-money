@@ -15,25 +15,25 @@
  */
 package com.smoketurner.dropwizard.money.jdbi;
 
-import org.javamoney.moneta.Money;
+import org.javamoney.moneta.FastMoney;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.Argument;
 import org.skife.jdbi.v2.tweak.ArgumentFactory;
 
 /**
- * An {@link ArgumentFactory} for {@link Money} arguments.
+ * An {@link ArgumentFactory} for {@link FastMoney} arguments.
  */
-public class MoneyArgumentFactory implements ArgumentFactory<Money> {
+public class FastMoneyArgumentFactory implements ArgumentFactory<FastMoney> {
 
     @Override
     public boolean accepts(Class<?> expectedType, Object value,
             StatementContext ctx) {
-        return value instanceof Money;
+        return value instanceof FastMoney;
     }
 
     @Override
-    public Argument build(Class<?> expectedType, Money value,
+    public Argument build(Class<?> expectedType, FastMoney value,
             StatementContext ctx) {
-        return new MoneyArgument(value);
+        return new FastMoneyArgument(value);
     }
 }

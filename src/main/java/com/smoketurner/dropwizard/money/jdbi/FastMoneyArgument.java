@@ -15,25 +15,31 @@
  */
 package com.smoketurner.dropwizard.money.jdbi;
 
-import org.javamoney.moneta.Money;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Types;
+import org.javamoney.moneta.FastMoney;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.Argument;
-import org.skife.jdbi.v2.tweak.ArgumentFactory;
 
 /**
- * An {@link ArgumentFactory} for {@link Money} arguments.
+ * An {@link Argument} for {@link FastMoney} objects.
  */
-public class MoneyArgumentFactory implements ArgumentFactory<Money> {
+public class FastMoneyArgument implements Argument {
 
-    @Override
-    public boolean accepts(Class<?> expectedType, Object value,
-            StatementContext ctx) {
-        return value instanceof Money;
+    private final FastMoney value;
+
+    FastMoneyArgument(final FastMoney value) {
+        this.value = value;
     }
 
     @Override
-    public Argument build(Class<?> expectedType, Money value,
-            StatementContext ctx) {
-        return new MoneyArgument(value);
+    public void apply(int position, PreparedStatement statement,
+            StatementContext ctx) throws SQLException {
+        if (value != null) {
+            statement.setLong(position, value.getNumber().longValue());
+        } else {
+            statement.setNull(position, Types.BIGINT);
+        }
     }
 }

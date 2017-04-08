@@ -44,9 +44,7 @@ public class MoneyModule extends Module {
     private final MonetaryAmountFormat formatter;
 
     public MoneyModule() {
-        this.formatter = MonetaryFormats.getAmountFormat(
-                AmountFormatQueryBuilder.of(Locale.getDefault())
-                        .set(CurrencyStyle.SYMBOL).build());
+        this(Locale.getDefault());
     }
 
     public MoneyModule(Locale locale) {
