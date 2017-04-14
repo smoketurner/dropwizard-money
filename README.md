@@ -7,9 +7,11 @@ Dropwizard Money
 
 A bundle for using [Money](http://javamoney.github.io) objects in Dropwizard applications. This bundle provides:
 
-* Jackson module for serializing/deserializing Money objects
-* JDBI argument mappers for persisting Money objects as a BigDecimal SQL type
-* Jersey `MoneyParam` for serializing/deserialzing Money objects
+* Jackson module for serializing/deserializing `Money`/`FastMoney` objects
+* JDBI argument mappers for persisting `Money` objects as a BigDecimal SQL type
+* JDBI argument mappers for persisting `FastMoney` objects as a Numeric SQL type
+* Jersey `MoneyParam` for serializing/deserialzing `Money` objects
+* Jersey `FastMoneyParam` for serializing/deserialzing `FastMoney` objects
 * Jersey `MonetaryExceptionMapper` for handling `MonetaryException`
 
 Usage
@@ -61,7 +63,7 @@ This project is available on Maven Central. To add it to your project simply add
 <dependency>
     <groupId>com.smoketurner.dropwizard</groupId>
     <artifactId>dropwizard-money</artifactId>
-    <version>1.1.0-2</version>
+    <version>1.1.0-3</version>
 </dependency>
 ```
 
