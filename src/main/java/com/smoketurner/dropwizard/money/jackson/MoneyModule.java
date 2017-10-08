@@ -48,9 +48,12 @@ public class MoneyModule extends Module {
     }
 
     public MoneyModule(Locale locale) {
-        this.formatter = MonetaryFormats
-                .getAmountFormat(AmountFormatQueryBuilder.of(locale)
-                        .set(CurrencyStyle.SYMBOL).build());
+        this(locale, CurrencyStyle.SYMBOL);
+    }
+
+    public MoneyModule(Locale locale, CurrencyStyle style) {
+        this.formatter = MonetaryFormats.getAmountFormat(
+                AmountFormatQueryBuilder.of(locale).set(style).build());
     }
 
     private class MoneyDeserializer extends JsonDeserializer<MonetaryAmount> {
