@@ -1,0 +1,4 @@
+com.smoketurner.dropwizard.money
+com.smoketurner.dropwizard.money.jackson
+com.smoketurner.dropwizard.money.jdbi
+com.smoketurner.dropwizard.money.jersey
