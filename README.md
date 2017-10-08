@@ -63,7 +63,7 @@ This project is available on Maven Central. To add it to your project simply add
 <dependency>
     <groupId>com.smoketurner.dropwizard</groupId>
     <artifactId>dropwizard-money</artifactId>
-    <version>1.1.0-3</version>
+    <version>1.2.0-1</version>
 </dependency>
 ```
 
