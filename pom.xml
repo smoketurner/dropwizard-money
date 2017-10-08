@@ -4,7 +4,7 @@
 
     <groupId>com.smoketurner.dropwizard</groupId>
     <artifactId>dropwizard-money</artifactId>
-    <version>1.1.0-4-SNAPSHOT</version>
+    <version>1.2.0-1</version>
     <packaging>jar</packaging>
 
     <name>Dropwizard Money</name>
@@ -23,7 +23,7 @@
         <developerConnection>scm:git:git@github.com:smoketurner/dropwizard-money.git</developerConnection>
         <connection>scm:git:https://github.com/smoketurner/dropwizard-money.git</connection>
         <url>https://github.com/smoketurner/dropwizard-money</url>
-        <tag>HEAD</tag>
+        <tag>v1.2.0-1</tag>
     </scm>
 
     <ciManagement>
