@@ -36,7 +36,7 @@ public class MoneyModuleTest {
     @Test
     public void canDeserializeAMoneyEUR() throws Exception {
         mapper.registerModule(new MoneyModule(Locale.GERMAN));
-        assertThat(mapper.readValue("\"€1.234,53\"", Money.class))
+        assertThat(mapper.readValue("\"1.234,53 €\"", Money.class))
                 .isEqualTo(Money.of(new BigDecimal("1234.53"), "EUR"));
     }
 
@@ -53,6 +53,6 @@ public class MoneyModuleTest {
         mapper.registerModule(new MoneyModule(Locale.GERMAN));
         assertThat(mapper
                 .writeValueAsString(Money.of(new BigDecimal("9375.59"), "EUR")))
-                        .isEqualTo("\"EUR 9.375,59\"");
+                        .isEqualTo("\"9.375,59 €\"");
     }
 }

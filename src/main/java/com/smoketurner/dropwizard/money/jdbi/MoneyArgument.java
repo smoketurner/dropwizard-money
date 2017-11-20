@@ -18,6 +18,7 @@ package com.smoketurner.dropwizard.money.jdbi;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import javax.annotation.Nullable;
 import org.javamoney.moneta.Money;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.Argument;
@@ -29,7 +30,7 @@ public class MoneyArgument implements Argument {
 
     private final Money value;
 
-    MoneyArgument(final Money value) {
+    MoneyArgument(@Nullable final Money value) {
         this.value = value;
     }
 

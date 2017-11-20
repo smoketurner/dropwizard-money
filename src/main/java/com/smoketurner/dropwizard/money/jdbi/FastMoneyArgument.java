@@ -18,6 +18,7 @@ package com.smoketurner.dropwizard.money.jdbi;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import javax.annotation.Nullable;
 import org.javamoney.moneta.FastMoney;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.Argument;
@@ -29,7 +30,7 @@ public class FastMoneyArgument implements Argument {
 
     private final FastMoney value;
 
-    FastMoneyArgument(final FastMoney value) {
+    FastMoneyArgument(@Nullable final FastMoney value) {
         this.value = value;
     }
 
