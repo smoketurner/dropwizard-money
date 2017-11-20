@@ -28,6 +28,7 @@ import org.skife.jdbi.v2.tweak.Argument;
  */
 public class MoneyArgument implements Argument {
 
+    @Nullable
     private final Money value;
 
     MoneyArgument(@Nullable final Money value) {

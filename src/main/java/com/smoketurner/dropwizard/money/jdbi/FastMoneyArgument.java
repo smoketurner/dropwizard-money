@@ -28,6 +28,7 @@ import org.skife.jdbi.v2.tweak.Argument;
  */
 public class FastMoneyArgument implements Argument {
 
+    @Nullable
     private final FastMoney value;
 
     FastMoneyArgument(@Nullable final FastMoney value) {
