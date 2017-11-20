@@ -27,14 +27,14 @@ public class FastMoneyMapper implements ResultColumnMapper<FastMoney> {
     @Nullable
     @Override
     public FastMoney mapColumn(ResultSet r, int columnNumber,
-            StatementContext ctx) throws SQLException {
+            @Nullable StatementContext ctx) throws SQLException {
         return convertToFastMoney(r.getLong(columnNumber));
     }
 
     @Nullable
     @Override
     public FastMoney mapColumn(ResultSet r, String columnLabel,
-            StatementContext ctx) throws SQLException {
+            @Nullable StatementContext ctx) throws SQLException {
         return convertToFastMoney(r.getLong(columnLabel));
     }
 

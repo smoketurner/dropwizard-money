@@ -27,15 +27,15 @@ public class MoneyMapper implements ResultColumnMapper<Money> {
 
     @Nullable
     @Override
-    public Money mapColumn(ResultSet r, int columnNumber, StatementContext ctx)
-            throws SQLException {
+    public Money mapColumn(ResultSet r, int columnNumber,
+            @Nullable StatementContext ctx) throws SQLException {
         return convertToMoney(r.getBigDecimal(columnNumber));
     }
 
     @Nullable
     @Override
     public Money mapColumn(ResultSet r, String columnLabel,
-            StatementContext ctx) throws SQLException {
+            @Nullable StatementContext ctx) throws SQLException {
         return convertToMoney(r.getBigDecimal(columnLabel));
     }
 
