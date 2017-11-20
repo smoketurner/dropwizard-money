@@ -53,6 +53,6 @@ public class MoneyModuleTest {
         mapper.registerModule(new MoneyModule(Locale.GERMAN));
         assertThat(mapper
                 .writeValueAsString(Money.of(new BigDecimal("9375.59"), "EUR")))
-                        .isEqualTo("\"9.375,59 €\"");
+                        .isEqualTo("\"EUR 9.375,59\"");
     }
 }
