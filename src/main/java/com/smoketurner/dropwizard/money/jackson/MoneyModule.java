@@ -41,6 +41,7 @@ import com.fasterxml.jackson.databind.ser.Serializers;
 
 public class MoneyModule extends Module {
 
+    private static final CurrencyStyle DEFAULT_CURRENCY_STYLE = CurrencyStyle.SYMBOL;
     private final MonetaryAmountFormat formatter;
 
     public MoneyModule() {
@@ -48,7 +49,7 @@ public class MoneyModule extends Module {
     }
 
     public MoneyModule(Locale locale) {
-        this(locale, CurrencyStyle.SYMBOL);
+        this(locale, DEFAULT_CURRENCY_STYLE);
     }
 
     public MoneyModule(Locale locale, CurrencyStyle style) {
