@@ -4,6 +4,7 @@ Dropwizard Money
 [![Coverage Status](https://coveralls.io/repos/smoketurner/dropwizard-money/badge.svg?branch=master)](https://coveralls.io/r/smoketurner/dropwizard-money?branch=master)
 [![Maven Central](https://img.shields.io/maven-central/v/com.smoketurner.dropwizard/dropwizard-money.svg?style=flat-square)](https://maven-badges.herokuapp.com/maven-central/com.smoketurner.dropwizard/dropwizard-money/)
 [![GitHub license](https://img.shields.io/github/license/smoketurner/dropwizard-money.svg?style=flat-square)](https://github.com/smoketurner/dropwizard-money/tree/master)
+[![Become a Patron](https://img.shields.io/badge/Patron-Patreon-red.svg)](https://www.patreon.com/bePatron?u=9567343)
 
 A bundle for using [Money](http://javamoney.github.io) objects in Dropwizard applications. This bundle provides:
 
