@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Smoke Turner, LLC.
+ * Copyright 2018 Smoke Turner, LLC.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,6 +41,7 @@ import com.fasterxml.jackson.databind.ser.Serializers;
 
 public class MoneyModule extends Module {
 
+    private static final CurrencyStyle DEFAULT_CURRENCY_STYLE = CurrencyStyle.SYMBOL;
     private final MonetaryAmountFormat formatter;
 
     public MoneyModule() {
@@ -48,7 +49,7 @@ public class MoneyModule extends Module {
     }
 
     public MoneyModule(Locale locale) {
-        this(locale, CurrencyStyle.SYMBOL);
+        this(locale, DEFAULT_CURRENCY_STYLE);
     }
 
     public MoneyModule(Locale locale, CurrencyStyle style) {

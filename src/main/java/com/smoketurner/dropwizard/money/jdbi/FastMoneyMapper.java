@@ -3,6 +3,7 @@ package com.smoketurner.dropwizard.money.jdbi;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
+import javax.annotation.Nullable;
 import org.javamoney.moneta.FastMoney;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.ResultColumnMapper;
@@ -23,19 +24,22 @@ public class FastMoneyMapper implements ResultColumnMapper<FastMoney> {
         currency = Optional.ofNullable(currencyCode);
     }
 
+    @Nullable
     @Override
     public FastMoney mapColumn(ResultSet r, int columnNumber,
-            StatementContext ctx) throws SQLException {
+            @Nullable StatementContext ctx) throws SQLException {
         return convertToFastMoney(r.getLong(columnNumber));
     }
 
+    @Nullable
     @Override
     public FastMoney mapColumn(ResultSet r, String columnLabel,
-            StatementContext ctx) throws SQLException {
+            @Nullable StatementContext ctx) throws SQLException {
         return convertToFastMoney(r.getLong(columnLabel));
     }
 
-    private FastMoney convertToFastMoney(Long amount) {
+    @Nullable
+    private FastMoney convertToFastMoney(@Nullable Long amount) {
         if (amount == null) {
             return null;
         }

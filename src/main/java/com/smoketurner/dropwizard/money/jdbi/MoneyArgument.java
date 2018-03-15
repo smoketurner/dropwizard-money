@@ -1,5 +1,5 @@
 /**
- * Copyright 2017 Smoke Turner, LLC.
+ * Copyright 2018 Smoke Turner, LLC.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,6 +18,7 @@ package com.smoketurner.dropwizard.money.jdbi;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Types;
+import javax.annotation.Nullable;
 import org.javamoney.moneta.Money;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.Argument;
@@ -27,9 +28,10 @@ import org.skife.jdbi.v2.tweak.Argument;
  */
 public class MoneyArgument implements Argument {
 
+    @Nullable
     private final Money value;
 
-    MoneyArgument(final Money value) {
+    MoneyArgument(@Nullable final Money value) {
         this.value = value;
     }
 
