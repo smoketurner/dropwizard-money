@@ -1,11 +1,11 @@
-/**
- * Copyright 2018 Smoke Turner, LLC.
+/*
+ * Copyright © 2018 Smoke Turner, LLC (contact@smoketurner.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,25 +23,22 @@ import org.javamoney.moneta.FastMoney;
 import org.skife.jdbi.v2.StatementContext;
 import org.skife.jdbi.v2.tweak.Argument;
 
-/**
- * An {@link Argument} for {@link FastMoney} objects.
- */
+/** An {@link Argument} for {@link FastMoney} objects. */
 public class FastMoneyArgument implements Argument {
 
-    @Nullable
-    private final FastMoney value;
+  @Nullable private final FastMoney value;
 
-    FastMoneyArgument(@Nullable final FastMoney value) {
-        this.value = value;
-    }
+  FastMoneyArgument(@Nullable final FastMoney value) {
+    this.value = value;
+  }
 
-    @Override
-    public void apply(int position, PreparedStatement statement,
-            StatementContext ctx) throws SQLException {
-        if (value != null) {
-            statement.setLong(position, value.getNumber().longValue());
-        } else {
-            statement.setNull(position, Types.BIGINT);
-        }
+  @Override
+  public void apply(int position, PreparedStatement statement, StatementContext ctx)
+      throws SQLException {
+    if (value != null) {
+      statement.setLong(position, value.getNumber().longValue());
+    } else {
+      statement.setNull(position, Types.BIGINT);
     }
+  }
 }
