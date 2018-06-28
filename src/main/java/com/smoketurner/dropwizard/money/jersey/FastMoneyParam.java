@@ -1,11 +1,11 @@
-/**
- * Copyright 2018 Smoke Turner, LLC.
+/*
+ * Copyright © 2018 Smoke Turner, LLC (contact@smoketurner.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,17 +15,17 @@
  */
 package com.smoketurner.dropwizard.money.jersey;
 
-import org.javamoney.moneta.FastMoney;
 import io.dropwizard.jersey.params.AbstractParam;
+import org.javamoney.moneta.FastMoney;
 
 public class FastMoneyParam extends AbstractParam<FastMoney> {
 
-    public FastMoneyParam(String input) {
-        super(input);
-    }
+  public FastMoneyParam(String input) {
+    super(input);
+  }
 
-    @Override
-    protected FastMoney parse(String input) throws Exception {
-        return FastMoney.parse(input);
-    }
+  @Override
+  protected FastMoney parse(String input) throws Exception {
+    return FastMoney.parse(input);
+  }
 }
