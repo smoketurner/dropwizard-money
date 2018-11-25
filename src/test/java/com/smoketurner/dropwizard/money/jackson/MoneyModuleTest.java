@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018 Smoke Turner, LLC (contact@smoketurner.com)
+ * Copyright © 2018 Smoke Turner, LLC (github@smoketurner.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,12 @@
 package com.smoketurner.dropwizard.money.jackson;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigDecimal;
 import java.util.Locale;
 import org.javamoney.moneta.Money;
 import org.junit.Test;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MoneyModuleTest {
 
