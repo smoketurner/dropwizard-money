@@ -1,5 +1,5 @@
 /*
- * Copyright © 2018 Smoke Turner, LLC (github@smoketurner.com)
+ * Copyright © 2019 Smoke Turner, LLC (github@smoketurner.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ public class MoneyModuleTest {
   @Test
   public void canDeserializeAMoney() throws Exception {
     mapper.registerModule(new MoneyModule());
-    assertThat(mapper.readValue("\"1,234.53\"", Money.class))
+    assertThat(mapper.readValue("\"USD 1,234.53\"", Money.class))
         .isEqualTo(Money.of(new BigDecimal("1234.53"), "USD"));
   }
 
